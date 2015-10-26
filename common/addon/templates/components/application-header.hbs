@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="left-wrapper">
+		<div class="navbar-header">
+			<span class="navbar-product"> {{#link-to 'authentication.signIn'}} {{applicationName}} {{/link-to}} </span>
+		</div>
+	</div>
+	<ul class="nav navbar-nav navbar-right user-overview">
+		{{#if currentUser}}
+			<img class="partner-logo" src={{currentUser.partnerLogoUrl}} style="vertical-align: middle;">
+		{{else}}
+			<img class="partner-logo" src="https://common.jelli.com/resources/1.0.2-a/images/jelli-logo2.png">
+		{{/if}}
+
+		<li class="dropdown">
+			{{#if isLoading}}
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="dropdown-toggle-content-loading-indicator"> Loading User... </span>
+				</a>
+			{{else}}
+				{{#if currentUser}}
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<dl class="dropdown-toggle-content">
+							<dt class="user-name"> {{{currentUser.name}}} </dt>
+							<dd class="user-title"> {{{currentUser.title}}} </dd>
+						</dl>
+						<img class="dropdown-toggle-icon" src="//common.jelli.com/resources/1.0.2-a/images/gear-icon.png">
+						{{#if currentUser.imageUrl}}
+							<img class="img-circle user-image" src={{currentUser.imageUrl}}>
+						{{else}}
+							<img class="img-circle user-image" src="//common.jelli.com/resources/1.0.2-a/images/no-user-image.png"/>
+						{{/if}}
+					</a>
+					<ul class="dropdown-menu settings-menu" role="menu">
+						<li class="divider"></li>
+						<li><a href="#" {{action "logout"}}> Sign Out </a></li>
+					</ul>			
+				{{/if}}
+			{{/if}}
+		</li>
+	</ul>
+</nav>

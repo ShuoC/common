@@ -9,6 +9,7 @@ export default Ember.Component.extend({
 	partnerLogoUrl: Ember.computed('', function(){
 		var user = this.container.lookup('session:user');
 		console.log('application-header', user);
+		console.log('common application-header');
 		return user.get('partnerLogoUrl');
 	}),
 	currentUser: Ember.computed('', function(){
